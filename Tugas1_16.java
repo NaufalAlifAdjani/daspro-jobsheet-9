@@ -1,41 +1,47 @@
 import java.util.Scanner;
 
-public class Tugas1_16 {
+public class Tugas1_16{
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+        int jmlMahasiswa = 0;
 
-        System.out.print("Masukkan banyaknya nilai mahasiswa: ");
-        int jumlahNilai = sc.nextInt();
+        System.out.print("Masukkan jumlah mahasiswa : ");
+        jmlMahasiswa = input.nextInt();
 
-        int[] nilaiMhs = new int[jumlahNilai];
-        int total = 0;
-        int tertinggi = Integer.MIN_VALUE;
-        int terendah = Integer.MAX_VALUE;
+        int[] nilaiMahasiswa = new int[jmlMahasiswa];
+        double total = 0, rataNilai;
 
-        for (int i = 0; i < jumlahNilai; i++) {
-            System.out.print("Masukkan nilai mahasiswa ke-" + (i + 1) + ": ");
-            nilaiMhs[i] = sc.nextInt();
-            total += nilaiMhs[i];
-
-            if (nilaiMhs[i] > tertinggi) {
-                tertinggi = nilaiMhs[i];
-            }
-            if (nilaiMhs[i] < terendah) {
-                terendah = nilaiMhs[i];
-            }
+        for (int i = 0; i < nilaiMahasiswa.length; i++) {
+            System.out.print("Masukkan nilai mahasiswa ke-" + (i+1) + " : ");
+            nilaiMahasiswa[i] = input.nextInt();
         }
 
-        double rataRata = (double) total / jumlahNilai;
-
-        System.out.println();
-        System.out.println("Nilai rata-rata: " + rataRata);
-        System.out.println("Nilai tertinggi: " + tertinggi);
-        System.out.println("Nilai terendah: " + terendah);
-        System.out.println();
-
-        System.out.println("Daftar nilai mahasiswa:");
-        for (int i = 0; i < nilaiMhs.length; i++) {
-            System.out.println("Nilai mahasiswa ke-" + (i + 1) + ": " + nilaiMhs[i]);
+        for (int i = 0; i < nilaiMahasiswa.length; i++) {
+            total += nilaiMahasiswa[i];
         }
+        
+        int nilaiTertinggi = nilaiMahasiswa[0], nilaiTerendah = nilaiMahasiswa[0];
+        for (int i = 1; i < nilaiMahasiswa.length; i++) {
+            if (nilaiMahasiswa[i] > nilaiTertinggi) {
+                nilaiTertinggi = nilaiMahasiswa[i];
+            }
+            if (nilaiMahasiswa[i] < nilaiTerendah) {
+                nilaiTerendah = nilaiMahasiswa[i];
+            }
+        }
+        rataNilai = total / nilaiMahasiswa.length;
+        System.out.println();
+
+        System.out.println("Rata-Rata nilai Mahasiswa : " + rataNilai);
+        System.out.println("Nilai Tertinggi Mahasiswa : " + nilaiTertinggi);
+        System.out.println("Nilai Terendah Mahasiswa : " + nilaiTerendah);
+        System.out.println();
+
+        System.out.println("------Daftar Nilai------");
+        for (int i = 0; i < nilaiMahasiswa.length; i++) {
+            System.out.println("Nilai mahasiswa ke-" + (i+1) + " : " + nilaiMahasiswa[i]);
+        }
+        input.close();
     }
 }
